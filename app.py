@@ -1,22 +1,19 @@
 from flask import Flask, request, jsonify
-from inference import predict_hiring_probability
+from resume_parsing import extract_text
+from feature_extraction import extract_features
+import os
 
 app = Flask(__name__)
+UPLOAD_FOLDER = "uploads"
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
-@app.route("/")
-def home():
-    return "Hiring Probability API is running"
+@app.route("/parse_resume", methods=["POST"])
+def parse_resume():
+    file = request.files["resume"]
+    path = os.path.join(app.config["UPLOAD_FOLDER"], file.filename)
+    file.save(path)
 
-@app.route("/predict", methods=["POST"])
-def predict():
-    data = request.get_json()
+    text = extract_text(path)
+    features = extract_features(text)
 
-    probability = predict_hiring_probability(data)
-
-    return jsonify({
-        "hiring_probability": probability
-    })
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
+    return jsonify(features)
