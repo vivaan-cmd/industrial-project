@@ -1,2 +1,2 @@
 # industrial-project
-hiring probability predicter
+hiring probability predictor
