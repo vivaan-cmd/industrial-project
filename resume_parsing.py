@@ -3,7 +3,6 @@ import docx
 import os 
 
 
-
 def extract_text(file_path):
     text = ""
 
