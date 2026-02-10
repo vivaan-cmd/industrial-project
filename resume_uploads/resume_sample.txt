@@ -1,0 +1,5 @@
+Computer Science student skilled in Python, SQL, Machine Learning and Flask.
+Built 3 projects including a resume analyzer and data analysis dashboard.
+Completed 1 internship at a tech startup.
+Certified in Data Science.
+GitHub: https://github.com/username
